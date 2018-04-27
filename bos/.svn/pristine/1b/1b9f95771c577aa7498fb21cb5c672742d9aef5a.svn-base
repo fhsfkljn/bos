@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//WebContent/json/menu.json=UTF-8
+encoding//WebContent/json/staff.json=UTF-8
+encoding//src/com/chao/bos/domain/Staff.java=UTF-8
+encoding//src/com/chao/bos/utils/PageBean.java=UTF-8
+encoding//src/com/chao/bos/web/interceptor/BOSLoginInterceptor.java=UTF-8
