@@ -1,0 +1,15 @@
+package com.chao.bos.service;
+
+import java.util.List;
+
+import com.chao.bos.domain.Subarea;
+import com.chao.bos.utils.PageBean;
+
+public interface ISubareaService {
+	
+	public void save(Subarea model);
+
+	public void pageQuery(PageBean pageBean);
+
+	public List<Subarea> findAll();
+}
