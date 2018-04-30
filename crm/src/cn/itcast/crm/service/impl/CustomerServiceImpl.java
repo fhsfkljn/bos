@@ -40,11 +40,11 @@ public class CustomerServiceImpl implements CustomerService {
 		Session session = HibernateUtils.openSession();
 		session.beginTransaction();
 
-		// å–æ¶ˆå®šåŒºæ‰€æœ‰å…³è”å®¢æˆ·
+		// È¡Ïû¶¨ÇøËùÓĞ¹ØÁª¿Í»§
 		String hql2 = "update Customer set decidedzone_id=null where decidedzone_id=?";
 		session.createQuery(hql2).setParameter(0, decidedZoneId).executeUpdate();
 
-		// è¿›è¡Œå…³è”
+		// ½øĞĞ¹ØÁª
 		String hql = "update Customer set decidedzone_id=? where id =?";
 		if (customerIds != null) {
 			for (Integer id : customerIds) {
@@ -53,6 +53,38 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	public Customer findCustomerByPhonenumber(String phonenumber) {
+		Session session = HibernateUtils.openSession();
+		session.beginTransaction();
+
+		String hql = "from Customer where telephone = ?";
+		List<Customer> customers = session.createQuery(hql).setParameter(0, phonenumber).list();
+
+		session.getTransaction().commit();
+		session.close();
+
+		if(customers != null && customers.size()>0){
+			return customers.get(0);
+		}
+		return null;
+	}
+
+	public String findDecidedzoneIdByPickaddress(String address) {
+		Session session = HibernateUtils.openSession();
+		session.beginTransaction();
+
+		String hql = "select decidedzone_id from Customer where address = ?";
+		List<String> customers = session.createQuery(hql).setParameter(0, address).list();
+
+		session.getTransaction().commit();
+		session.close();
+
+		if(customers != null && customers.size()>0){
+			return customers.get(0);
+		}
+		return null;
 	}
 
 }

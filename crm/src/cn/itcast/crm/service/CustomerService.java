@@ -4,14 +4,20 @@ import java.util.List;
 
 import cn.itcast.crm.domain.Customer;
 
-// å®¢æˆ·æœåŠ¡æ¥å£ 
+// ¿Í»§·şÎñ½Ó¿Ú 
 public interface CustomerService {
-	// æœªå…³è”å®šåŒºå®¢æˆ·
+	// Î´¹ØÁª¶¨Çø¿Í»§
 	public List<Customer> findnoassociationCustomers();
 
-	// æŸ¥è¯¢å·²ç»å…³è”æŒ‡å®šå®šåŒºçš„å®¢æˆ·
+	// ²éÑ¯ÒÑ¾­¹ØÁªÖ¸¶¨¶¨ÇøµÄ¿Í»§
 	public List<Customer> findhasassociationCustomers(String decidedZoneId);
 
-	// å°†æœªå…³è”å®šåŒºå®¢æˆ·å…³è”åˆ°å®šåŒºä¸Š
+	// ½«Î´¹ØÁª¶¨Çø¿Í»§¹ØÁªµ½¶¨ÇøÉÏ
 	public void assignCustomersToDecidedZone(Integer[] customerIds, String decidedZoneId);
+	
+	//¸ù¾İÊÖ»úºÅ²éÑ¯¿Í»§ĞÅÏ¢
+	public Customer findCustomerByPhonenumber(String phonenumber);
+	
+	//¸ù¾İÈ¡¼şµØÖ·²éÑ¯¶¨Çøid
+	public String findDecidedzoneIdByPickaddress(String address);
 }
