@@ -1,9 +1,14 @@
 package com.chao.bos.service.impl;
 
+import javax.annotation.Resource;
+
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.impl.persistence.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chao.bos.dao.IRoleDao;
 import com.chao.bos.dao.IUserDao;
 import com.chao.bos.domain.Role;
 import com.chao.bos.domain.User;
@@ -18,6 +23,10 @@ public class UserServiceImpl implements IUserService{
 	//注入dao
 	@Autowired
 	private IUserDao userDao;
+	@Resource
+	private IdentityService identityService;
+	@Autowired
+	private IRoleDao roleDao;
 	
 	public User login(User user) {
 		String username = user.getUsername();
@@ -39,10 +48,15 @@ public class UserServiceImpl implements IUserService{
 		password = MD5Utils.md5(password);
 		user.setPassword(password);
 		userDao.save(user);//持久对象 
+		
+		org.activiti.engine.identity.User actUser = new UserEntity(user.getId());
+		identityService.saveUser(actUser);
+		
 		for (String roleId : roleIds) {
-			Role role = new Role(roleId);
+			Role role = roleDao.findById(roleId);
 			//用户关联角色
 			user.getRoles().add(role);
+			identityService.createMembership(actUser.getId(), role.getName());
 		}
 	}
 

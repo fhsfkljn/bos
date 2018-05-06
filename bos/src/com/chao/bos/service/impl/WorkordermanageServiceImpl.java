@@ -1,10 +1,11 @@
 package com.chao.bos.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
-
-
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +23,17 @@ public class WorkordermanageServiceImpl implements IWorkordermanageService{
 		model.setUpdatetime(new Date());
 		workordermanageDao.save(model);
 	}
+
+	/**
+	 * 查询start为0的工作单
+	 */
+	public List<Workordermanage> findListNotStart() {
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Workordermanage.class);
+		detachedCriteria.add(Restrictions.eq("start", "0"));
+		return workordermanageDao.findByCriteria(detachedCriteria);
+	}
+
+	
+	
+	
 }

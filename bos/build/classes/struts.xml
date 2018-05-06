@@ -63,6 +63,8 @@
 		</action>
 		<!-- 工作单管理Action -->
 		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/startransfer.jsp</result>
+			<result name="toList">workordermanageAction_list.action</result>
 		</action>
 		<!-- 权限管理 -->
 		<action name="functionAction_*" class="functionAction" method="{1}">
@@ -87,6 +89,15 @@
 					<param name="contentDisposition">attachment;filename="abc.png"</param>
 					<param name="bufferSize">1024</param>
 				 -->
+			</result>
+		</action>
+		<!-- 流程实例管理 -->
+		<action name="processInstanceAction_*" class="processInstanceAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processinstance.jsp</result>
+			<result name="showPng">/WEB-INF/pages/workflow/image.jsp</result>
+			<result name="viewImage" type="stream">
+				<param name="contentType">image/png</param>
+				<param name="inputName">pngStream</param>
 			</result>
 		</action>
 	</package>
