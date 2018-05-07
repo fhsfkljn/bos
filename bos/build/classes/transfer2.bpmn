@@ -16,9 +16,7 @@
     <sequenceFlow id="flow7" sourceRef="checkYesOrNo" targetRef="outStore">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${check==1}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="flow8" sourceRef="checkYesOrNo" targetRef="endevent1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${check==0}]]></conditionExpression>
-    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="checkYesOrNo" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_transfer">
     <bpmndi:BPMNPlane bpmnElement="transfer" id="BPMNPlane_transfer">

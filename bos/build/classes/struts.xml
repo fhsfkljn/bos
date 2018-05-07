@@ -64,7 +64,7 @@
 		<!-- 工作单管理Action -->
 		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
 			<result name="list">/WEB-INF/pages/workflow/startransfer.jsp</result>
-			<result name="toList">workordermanageAction_list.action</result>
+			<result name="toList" type="redirectAction">workordermanageAction_list.action</result>
 		</action>
 		<!-- 权限管理 -->
 		<action name="functionAction_*" class="functionAction" method="{1}">
@@ -99,6 +99,14 @@
 				<param name="contentType">image/png</param>
 				<param name="inputName">pngStream</param>
 			</result>
+		</action>
+		<!-- 任务操作 -->
+		<action name="taskAction_*" class="taskAction" method="{1}">
+			<result name="grouptasklist">/WEB-INF/pages/workflow/grouptask.jsp</result>
+			<result name="togrouptasklist" type="redirectAction">taskAction_findGroupTask</result>
+			<result name="personaltasklist">/WEB-INF/pages/workflow/personaltask.jsp</result>
+			<result name="check">/WEB-INF/pages/workflow/check.jsp</result>
+			<result name="topersonaltasklist" type="redirectAction">taskAction_findPersonalTask</result>
 		</action>
 	</package>
 </struts>
